@@ -3,11 +3,15 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+define evelyn = Character("Evelyn",color="#9e0b0b")
+define valerie = Character("Valerie", color="#a881f7")
+define kit = Character("Kit", color="#ff7033")
+define landlord = Character("Landlord")
+
 
 
 # The game starts here.
-
+# labels act as bookmarks or chapter titles that assign a name to a specific point in your game's script
 label start:
 
     # Show a background. This uses a placeholder by default, but you can
@@ -24,9 +28,12 @@ label start:
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    evelyn "You've created a new Ren'Py game."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    valerie "Once you add a story, pictures, and music, you can release it to the world!"
+
+
+
 
     # This ends the game.
 
