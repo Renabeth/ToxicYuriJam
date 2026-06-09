@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -310,6 +310,9 @@ screen navigation():
         textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
+
+        textbutton _("Achievements") action ShowMenu("achievements")
+
 
         if _in_replay:
 
@@ -809,6 +812,10 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+
+
+
+
 
 
 style pref_label is gui_label

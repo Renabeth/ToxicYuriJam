@@ -14,6 +14,14 @@ define l = Character("Landlord")
 # labels act as bookmarks or chapter titles that assign a name to a specific point in your game's script
 label start:
 
+    $ achievement.grant("test")
+    "I'm granting an achievement"
+    if achievement.has("test"):
+        "And it worked!"
+    else:
+        "But that didn't work."
+        $ achievement.clear_all()
+
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
@@ -28,7 +36,10 @@ label start:
     show eileen happy at left
 
    
-    # Scene 1 - Game Starts Here
+    # Scene 1 - Game Starts Here 
+    # TODO: First cemetery scene will go here
+
+
     play music "audio/sfx_knocking.mp3" volume 0.2 #kit knocking
     e "uggghhh..."
     e "hhhhhhhhhhhhhhhhhhhhhhhhhh,,,"
@@ -45,8 +56,9 @@ label start:
             jump answer_door
          
     
-    #Eve and Val talk in bed
 label stay_in_bed:
+    # Scene - Eve doesn't answer door talks with Val in bed
+
     "Ughh,, I'm too hungover for this"
     "It'll probably stop."
     "Eventually."
@@ -62,113 +74,164 @@ label stay_in_bed:
     
     menu:
         "Do drugs":
-            "drugs are cool"
-            jump memory_hallucination_1
+            jump mem_hallucination_1
         
-        "Fuck my girlfriend":
+        "Fuck":
             jump sesbian_lex
 
         "Answer the door":
-            jump answer_door_alt
+            jump answer_door_alt # Talk with Kit (alternate)
 
 
-    #add walking sound effects
+    # TODO: add walking sound effects
 label answer_door:
+    # Scene - Eve gets out of bed and answers the door
     stop music fadeout 1.0
-    e "Alriiiight I'm coming."
-    "I struggle to sit up, hangover's a total bitch."
-    "I rest my hand on my rickety ass bed."
-    e "AGH,,, fuck.."
-    "I wince as a used needle enters the palm of my hand."
-    "Damn, shit. I forgot to throw out the needles from last night."
-    "Shows me for getting too relaxed."
-    #show eileen normal at right (val's sprite)
-    v "mmmnmmm?"
-    e "Sorry, stabbed myself. Go back to bed."
-    #fade out Valerie's sprite
-    play sound "audio/sfx_knocking.mp3" volume 0.2
-    "Right, almost forgot about that."
-    "Alright, alright I'm here. Stop the banging for god's sake."
-    "I open the door, the sunlight from the hallway balcony is so bright it immediately blinds me."
-    "Before I can even get a word out her voice pierces my ears."
-    k "EEEEEEEEEEEEEEEEEEEEEEEEEVVVEEEEEEEEEEE!!!! ⋆ ˚｡⋆୨୧˚"
-    "Oh god."
-    "Still slamming my eyes shut from the daylight, I can feel her wrap her arms so tight around me that I feel my ribcage through my skin."
-    "I finally open my eyes to be greeted with her all-too happy grinning visage."
-    e "I've told you it's Evelyn-"
-    k "AWWWWW, but Eve is just SUCH a cute nickname!!"
-    e "-and can you please stop yelling. Val is asleep."
-    e "If you wanna talk, move it into the hallway..."
-    e "without me."
-    "I slam the door shut. Back to my sanctuary of darkness."
-    "Her incessant shouting manages to reach me even through the cheap, busted up, plywood door."
-    k "OKAY WELL, I'M GONNA BRING BY SOME FRUIT LATER!!! SEE YOU THEN!!! ♡⋆ ˚｡⋆୨୧˚"
-    k "ALSO MY MOM SAYS YOU CAN HAVE ANOTHER MONTHS EXTENSION ON YOUR RENT!!! ⋆ ˚｡⋆୨୧˚"
-    "I wander back to bed and slam my face into my pillow. Thankfully no needles this time."
-    #show vals sprite
-    v "mmm? Good morning baby."
-    e "Hey, Kit came by."
-    v "Ughh, did you cover for me?"
-    e "... in a way"
-    v "Whatever, as long as she's gone."
-    e "Yeah totally... except she's coming back in a little bit to bring us more fruit."
-    v "Noooooooo… shiiiit."
-    e "It couldn't have been that bad."
-    v "You literally don't get it."
-    v "Last time she asked if she could borrow my buttplug."
-    v "In front of all my coworkers."
-    v "I wanted to kill myself. Frankly, I still might, we have a razor somewhere in this shithole I'm sure."
-    v "While you look for it I'll start drowning myself in the sink."
-    e "I think there might be too many mold infested dishes in there, you might have a better chance of dying from disease than any attempt at drowning."
-    v "Welp, there goes that plan."
-    "Valerie lays down next to me in a huff, she's so light I can barely feel her hit the bed."
-    #add stomach growling sfx
-    "Well I guess I'm not much better, wish we had money for takeout."
-    "Wish we had money at all."
-    v "Guess suicide's off the menu. What do you wanna do today?"
+    # temporarily removed dialogue here
 
     menu:
         "Sit around and do nothing":
             "nothing"
         "Fuck":
-            "fuck"
-        "Listen to some music":
-            "music"
+            jump sesbian_lex
+        "Listen to some music": #Eve & Val get high as they listen to music. All music choices lead to the mem_hallucination 2.
+            menu:
+                "deaftunes - throughout the fern": #needs to be persistant 
+                    "yap about deaftunes"
+                    jump mem_hallucination_2
+                "The Reused - Drawing":
+                    "yap about the reused"
+                    jump mem_hallucination_2
+                "Samsara - In Vitro":
+                    "yap about samsara"
+                    jump mem_hallucination_2
 
     #end scene
     return
 
-label memory_hallucination_1:
+label mem_hallucination_1:
     "Scene - memory hallucination 1"
+    # "Landlord knocks on door"
+    # Are you high? (choices - yes, no, do you really care)
+    # eventually jump to mem hallucination 2
+
+label mem_hallucination_2:
+    "Scene - memory hallucination 2"
+    # Evelyn Remembers her and Valerie having an argument about their drug usage and Val being vindictive and pushing the blame on her
+    
+
+label mem_hallucination_3:
+    "Scene - memory hallucination 3"
+
+label mem_hallucination_4:
+    "Scene - memory hallucination 4"
+
+label sex_hallucination_1:
+    "Scene - sex hallucination 1"
+
+label sex_hallucination_2:
+    "Scene - sex hallucination 2"
+    # Eve takes drugs while jerking off the Valerie, causes hallucinations to get worse/more violent/aggresive
+
+    menu:
+        "I can't deal with this right now": # Leads to infidelity ending
+            ""
+            jump infidelity_ending
+        "I don't want to stop. I want to touch her.": # Leads to bad touch ending
+            ""
+            jump bad_touch_ending
+
+
+label cemetery_scene:
+    "Scene - Eve and Hallucination Valerie make up and go to the cemetery"
+    # choices - try to patch things up / panic???
 
 #The "sex" scene
 label sesbian_lex:
-    "lesbian sex haha"
+    "Scene - Eve has 'sex' with Vallerie"
+    jump mem_hallucination_1
 
 label answer_door_alt:
+    # Scene - If Eve intially doesn't answer the door
     stop music fadeout 1.0
-    k "What are your plans for today?"
     
-    menu:
-        "Sit around and do nothing":
-            ""
-        "Fuck":
-            jump sesbian_lex
-        "Listen to some music":
-            ""
+    # Potentially alternate paths to infidelity, good, and suicide endings
+
+    # May not need this
+    # k "What are your plans for today?"
+
+    #menu:
+        #"Sit around and do nothing":
+            #""
+        #"Fuck":
+            #jump sesbian_lex
+        #"Listen to some music":
+            #""
+    
+    #jump mem_hallucination_4
         
 
+label post_music:
+    # Scene - Eve starts crying listening to music after hallucination 2
+    # e "I can't stop crying"
 
-label good_ending:
-    
+    menu:
+        "Try to talk to your girlfriend":
+            #Leads to mem hallucination 4 and good ending
+            "Eve tries to talk it out with Val but she starts subconciously blocking out what Valerie says until running out in a panic where she runs into kit bringing over some fruits"
+        "Fuck the feelings away":
+            jump sex_hallucination_2
+            ""
+        "Get so fucked up you don't feel anymore":
+            "" 
+
 
 label suicide_ending:
     
 
 label bad_touch_ending:
+    # Choices here always result in bad touch
+    menu:
+        "Stoke.":
+            ""
+        "Touch her.":
+            ""
+        
+    #Continue having "sex"
+    menu:
+        "Stoke.":
+            ""
+        "Touch her.":
+            ""
+
+    #Continue having "sex" (again)
+    menu:
+        "Touch her.":
+            "Evelyn tries to touch Valerie while they are having sex and her hallucination disappears"
+
     
 
 label infidelity_ending:
+    "Eve runs into Kit and is pent-up sexually"
+    menu:
+        "Fuck Kit": # locks into infedility
+            "Kit refuses and mentions Valerie"
+            menu:
+                "Lie":
+                    "Eve fucks Kit while crying and making excuses about Valerie (Infidelity Ending)"
+        "Try to talk to her": #Re-routes you to Delusion dependin gon choices
+            "Eve tries to explain her and Valerie's issues"
+            menu:
+                "Fuck Kit": # back to infidelity
+                    ""
+                "Confide in her": # Delusion endning
+                    "Kit says that Eve is in the wrong"
+
+
+label good_ending:
+
+label true_ending:
+
 
 # This ends the game.
 
