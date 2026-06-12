@@ -14,6 +14,9 @@ define l = Character("Landlord")
 # labels act as bookmarks or chapter titles that assign a name to a specific point in your game's script
 label start:
 
+    # Code for glitched/blocked out text
+    # "dialogue here {glitch=5R.0}{color=#bababa}{b}██████{/b}{/color}{/glitch}"
+
     $ achievement.grant("first_achievement")
     "You unlocked an achievement!"
     
@@ -33,6 +36,7 @@ label start:
     show eileen happy at left
 
    
+
     # Scene 1 - Game Starts Here 
     # TODO: First cemetery scene will go here
 
