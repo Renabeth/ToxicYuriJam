@@ -8,22 +8,22 @@ define v = Character("Valerie", color="#a881f7")
 define k = Character("Kit", color="#ff7033")
 define l = Character("Landlord")
 
-image eve normal = im.Scale("images/eve normal.png", 300, 900) # only need to define these once
+image eve normal = im.Scale("images/eve normal.png", 300, 900) # only need to define these once per character portrait
 image val normal = im.Scale("images/val normal.png", 300, 900)
 
 
 
-# clickable objects in bedroom background 
 default inspect_mode = False
+default screen_tooltip = ""
 
-screen bedroom():
+screen bedroom_inspect():
 
+    # Do not use modal True: it blocks normal dialogue clicks.
     add "bg room"
-    modal True
 
     textbutton ("Inspect On" if inspect_mode else "Inspect Off"):
         xpos 20
-        ypos 20
+        ypos 1000
         action ToggleVariable("inspect_mode")
 
     if inspect_mode:
@@ -31,7 +31,12 @@ screen bedroom():
             focus_mask True
             hovered SetVariable("screen_tooltip", "My bed")
             unhovered SetVariable("screen_tooltip", "")
-            action Jump("bed")
+            action Call("inspect_bed")
+
+    if screen_tooltip:
+        text screen_tooltip:
+            xpos 20
+            ypos 930
 
 
 
@@ -40,21 +45,14 @@ screen bedroom():
 label start:
 
     scene bg room
+    show screen bedroom_inspect #Put this in scenes that you can inspect
 
-    label room:
-        call screen bedroom
+    "Fixed: The player can turn Inspect On whenever they want."
 
-    label bed:
-        "That's my bed. What do you mean there's no where to sit?"
-        # jump room
-
-
-    # Code for glitched/blocked out text
     "dialogue here {glitch=5.0}{color=#bababa}{b}██████{/b}{/color}{/glitch}"
 
     $ achievement.grant("first_achievement")
     "You unlocked an achievement!"
-    
 
 
     # Show a background. This uses a placeholder by default, but you can
@@ -97,6 +95,13 @@ label start:
             jump answer_door
 
 
+    hide screen bedroom_inspect
+    return
+
+
+label inspect_bed:
+    "That's my bed. What do you mean there's nowhere to sit?"
+    return
          
     
 label stay_in_bed:
