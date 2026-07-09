@@ -447,10 +447,22 @@ label sex_hallucination_2:
 
 
 label after_music:
-    "Scene - Eve starts crying listening to music after hallucination 2"
-    # e "I can't stop crying"
+    # "Scene - Eve starts crying listening to music after hallucination 2"
+    "The voices ffade as I finally start to feel normal."
+    "My eyes open to the sight of a familiar stained wet gross ceiling."
+    "My skull is banging like a drum."
+    v "Baby are you ok?"
+    "I look over at her, I'm still pissed."
+    "I want to yell at her, tell her how much she hurts me."
+    "Let her see what it's like to be compared to a corpse in a ditch who can do no wrong."
+    "I can feel the rage bubbling up again, pulsing through my skin wanting to rip through it and break out."
+    "She puts her hand on my shoulder, my mind is so blinded by emotion I can't even feel it, and the pounding in my skull is only getting worse."
+    "BANG. BANG. BANG."
+    "If I can't get all of this anger out in one way or another, then I'm going to god damn explode."
 
     menu:
+        $ 
+        v "Baby I'm worried, can I help?"    
         "Try to talk to your girlfriend":
             #Leads to mem hallucination 4 and good ending
             "Eve tries to talk it out with Val but she starts subconciously blocking out what Valerie says until running out in a panic where she runs into kit bringing over some fruits"
@@ -458,8 +470,20 @@ label after_music:
             jump sex_hallucination_2
             ""
         "Get so fucked up you don't feel anymore":
-            "" 
-
+            "I can't hold it in anymore, I have to get rid of these disgusting feelings." 
+            "Before they become me or I become dead."
+            "When I look at her all I can think about is how much I know she hates me."
+            "And how I might hate her more."
+            "I need to get up."
+            "As I try to move I collapse backwards onto the ground."
+            "I stand up too fast, I feel so lightheaded I might pass out."
+            "My eyes dart around the room to look for something to numb the pain."
+            "I spot an acid tab sitting on some random pile of shit on the floor."
+            "Just as quickly as I notice it I shove it into my mouth."
+            "Before I knew it I'm on the ground."
+            "Looking up. The apartment is wrong again."
+            "And I can hear the voices coming back."
+            jump mem_hallucination_3
 
 
 label cemetery_scene_1:
