@@ -1,4 +1,4 @@
-################################################################################
+﻿################################################################################
 ## Initialization
 ################################################################################
 
@@ -373,28 +373,28 @@ screen main_menu():
             ## DEFAULT TEXT START BUTTON
             #textbutton _("Start") action Start()
             ## NEW IMAGE START BUTTON
-        imagebutton auto "gui/menu_buttons/teststartbutton_%s.png" xpos 500 ypos 650 action Start()
+        imagebutton auto "gui/menu_buttons/startbutton_%s.png" xpos 530 ypos 500 action Start()
 
 ##            else:
 
-        textbutton _("History") action ShowMenu("history")
+        #textbutton _("History") action ShowMenu("history")
 
-        textbutton _("Save") action ShowMenu("save")
+        #textbutton _("Save") action ShowMenu("save")
 
         ## DEFAULT TEXT LOAD BUTTON
         ##textbutton _("Load") action ShowMenu("load")
-        ## NEW IMAGE START BUTTON
-        imagebutton auto "gui/menu_buttons/testloadbutton_%s.png" xpos 850 ypos 550 action ShowMenu("load")
+        ## NEW IMAGE LOAD BUTTON
+        imagebutton auto "gui/menu_buttons/loadbutton_%s.png" xpos 530 ypos 610 action ShowMenu("load")
 
         ## DEFAULT TEXT OPTIONS BUTTON
         ##textbutton _("Preferences") action ShowMenu("preferences")
         ## NEW IMAGE OPTIONS BUTTON
-        imagebutton auto "gui/menu_buttons/testoptionsbutton_%s.png" xpos 1200 ypos 300 action ShowMenu("preferences")
+        imagebutton auto "gui/menu_buttons/optionsbutton_%s.png" xpos 530 ypos 720 action ShowMenu("preferences")
 
         ## DEFAULT TEXT ACHIEVEMENTS BUTTON
         ##textbutton _("Achievements") action ShowMenu("achievements")
         ## NEW IMAGE ACHIEVEMENTS BUTTON
-        imagebutton auto "gui/menu_buttons/testachievebutton_%s.png" xpos 1100 ypos 600 action ShowMenu("achievements")
+        imagebutton auto "gui/menu_buttons/achievebutton_%s.png" xpos 530 ypos 830 action ShowMenu("achievements")
 
         if _in_replay:
 
@@ -402,12 +402,12 @@ screen main_menu():
 
 ##            elif not main_menu:
 
-        textbutton _("Main Menu") action MainMenu()
+        #textbutton _("Main Menu") action MainMenu()
 
         ## DEFAULT TEXT CREDITS BUTTON
         ##textbutton _("About") action ShowMenu("about")
         ## NEW IMAGE CREDITS BUTTON
-        imagebutton auto "gui/menu_buttons/testcreditsbutton_%s.png" xpos 1500 ypos 500 action ShowMenu("about")
+        #imagebutton auto "gui/menu_buttons/testcreditsbutton_%s.png" xpos 1500 ypos 500 action ShowMenu("about")
 
         ##if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -422,7 +422,7 @@ screen main_menu():
             ## DEFAULT TEXT QUIT BUTTON
             ##textbutton _("Quit") action Quit(confirm=not main_menu)
             ## NEW IMAGE QUIT BUTTON
-            imagebutton auto "gui/menu_buttons/testquitbutton_%s.png" xpos 1500 ypos 750 action Quit(confirm=not main_menu)
+            imagebutton auto "gui/menu_buttons/quitbutton_%s.png" xpos 1410 ypos 930 action Quit(confirm=not main_menu)
 
 
 
@@ -448,8 +448,8 @@ screen main_menu():
     #############################################################################
 
 
-    ## TEMP LOGO IMAGE ##########################################################
-    add "images/title_screen_logo.png" xpos 100 ypos 100
+    ## LOGO ##########################################################
+    add "images/title_screen_logo.png" xpos 550 ypos 50 zoom 1.2
 
     if gui.show_name:
 
@@ -701,59 +701,59 @@ screen achievements():
 
             # Achievement 1
             if achievement.has("first_achievement"):
-                text "🏆 First Achievement - You did something awesome."
+                text "💉 First Achievement - You did something awesome."
             else:
                 text "❓ First Achievement - Locked"
 
             # Achievement 2
             if achievement.has("secret"):
-                text "🏆 Secret - Shhhhhhh."
+                text "💉 Secret - Shhhhhhh."
             else:
                 text "❓ Secret - Locked"
 
             # Music Achievement
             if achievement.has("oldhead"):
-                text "🏆 Wow you *really* like music"                
+                text "💉 Wow you *really* like music"
             else:
                 text "❓ Locked"
 
             # True Ending Achievement
             if achievement.has("true_ending"):
-                text "🏆 Reach the true ending"
+                text "🪦 Reach the true ending"
             else:
                 text "❓ Reach the ??? ending"
 
             # Good Ending Achievement
             if achievement.has("good_ending"):
-                text "🏆 Reach the good ending"
+                text "💉 Reach the good ending"
             else:
                 text "❓ Reach the ??? ending"
 
             # Good Ending Achievement
             if achievement.has("suicide_ending"):
-                text "🏆 Reach the suicide ending"
+                text "💉 Reach the suicide ending"
             else:
                 text "❓ Reach the ??? ending"
-            
+
             # Bad Touch Achievement
             if achievement.has("bad_touch_ending"):
-                text "🏆 Reach the bad touch ending"                
+                text "💉 Reach the bad touch ending"
             else:
                 text "❓ Reach the ??? ending"
 
             # Infidelity Achievement
             if achievement.has("infedlity_ending"):
-                text "🏆 Reach the infidelity ending"
+                text "💉 Reach the infidelity ending"
             else:
                 text "❓ Reach the ??? ending"
 
             # Delusion Achievement
             if achievement.has("delusion_ending"):
-                text "🏆 Reach the delusion ending"
+                text "💉 Reach the delusion ending"
             else:
                 text "❓ Reach the ??? ending"
 
-            
+
 
 
 screen file_slots(title):
