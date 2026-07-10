@@ -41,6 +41,7 @@ default screen_tooltip = ""
 default came_from_music = False
 default came_from_cant_feel_anymore = False
 default came_from_drugs = False
+default came_from_cemetery_1 = False
 
 
 # Custom Transitions
@@ -401,6 +402,7 @@ label answer_door_alt:
 
 label kit_at_door:
     #Scene - Kit at the door after the player decides to do drugs
+    scene black with fuzzy_transition
     scene bg room with fuzzy_transition
     "The high is finally starting to wear off."
     play sound "audio/sfx_knocking.mp3" volume 1.0 #kit knocking
@@ -547,11 +549,66 @@ label mem_hallucination_2:
     #jump cemetery_scene_1
 
 label mem_hallucination_3:
-    "Scene - memory hallucination 3. Evelyn Remembers a doctors appointment where a doctor berates her and Valerie for their excessive drug usage"
+    #"Scene - memory hallucination 3. Evelyn Remembers a doctors appointment where a doctor berates her and Valerie for their excessive drug usage"
+    scene black with spiral_transition
+    "Doctor?" "Mixing substances, not sleeping, not eating regularly. These are very dangerous patterns of behavior. this isn't something I can just ignore."
+    eh "I can ignore it fine enough"
+    "Doctor?" "This hasn't gotten any better since your last physical, Evelyn. I'm worried about you doing this to yourself."
+    eh "You aren't really worried, you're just paid to tell me that bull."
+    "Doctor?" "I can't imagine you aren't a little worried, you came here for your appointment after all."
+    eh "No, she made me come here."
+    vh "Baby, I'm worried about you."
+    eh "Don't pretend like I'm the only one getting fucked up every night."
+    vh "Okay, yeah. I'm not innocent. But at least I'm trying to get us some help."
+    vh "Evelyn, you're destroying your life, our life."
+    "I shoot daggers at her. I can't hide how annoyed I am she's airing our shit out."
+    vh "I want us to have a real life, I hate seeing you laying in bed all day."
+    vh "I'm still trying, I still go to work, I have friends outside. I'm still doing things."
+    eh "Yeah, doesn't stop you from using all that job money to pay for us to get high when you come home."
+    vh "That's not fair."
+    eh "You think having a job makes you better?"
+    vh "I never said I was better, but I can't even get you to leave the house most of the time."
+    eh "You buy us food and spend the rest on the shit we use to get high."
+    vh "You woudn't eat if I didn't buy us food, you'd starve to death drugged out on the floor."
+    eh "Always trying to pretend like you don't want to be high right next to me."
+    eh "{i}\"We could stop at any time\"{/i} right?"
+    vh "If you would just try, maybe we could."
+    vh "Don't make me complacent in you falling apart, dumbass."
+    "I can hear that hack doctor talking, I barely process any words they're saying."
+    "Doctor?" "Evelyn, what concerns me most is that this pattern can become fatal."
+    eh "Whatever. It's my life not yours, just leave it alone."
+    vh "Sweetie, please."
+    vh "I don't want to lose you too."
+    "I stood up to leave."
+    "Doctor?" "This is not something to dismiss, Evelyn. I may have to send you to a psychiatric center if this behavior remains consistent."
+    eh "That's total bullshit."
+    "I feel Val weakly grab onto my hand as I try to leave."
+    vh "Baby, it might be for the best. If we both go."
+    vh "You're right, I don't think I'm inncoent in this either so... please."
+    eh "I'm not taking any more of this shit."
+    vh "Evelyn please, I can't just sit by and watch you kill yourself like this."
+    eh "You don't get to decide that for me."
+    eh "So what if I OD? You already lost one girlfriend. You can handle it again."
+    eh "I'm just the imperfect girlfriend, right?"
+    eh "Nothing like her."
+    "Val looks like she's on the brink of tears."
+    vh "Don't talk about her like that."
+    "I can't stand it when she looks at me like that. Like i hurt her. Like it's my fault."
+    vh "Please… I'm just trying to get you to be better to yourself."
+    eh "So I can be more like {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}, right?"
+    "She hides her face in her hands. It doesn't matter. I can tell she's crying anyways."
+    vh "You think I could go through at again?"
+    eh "I think you'd survive, yeah."
+    vh "That's not the same thing and you know it."
+
+
     if came_from_cant_feel_anymore:
         $ came_from_cant_feel_anymore = True
         jump after_hallucination_panic
     
+    if came_from_cemetery_1:
+        $ came_from_cemetery_1 = True
+        jump try_to_remember
     return
     #jump cemetery_scene_2
 
@@ -645,6 +702,7 @@ label cemetery_scene_1:
     # "Scene - Eve and Hallucination Valerie make up and go to the cemetery" (try to patch things up)
     # TODO: Make this cemetery BG
     scene bg room with fade
+    $ came_from_cemetery_1 = True
     e "Aigh, I'm sorry, I just, I keep remembering shit."
     e "Stupid fucking arguments we've had."
     e "I just- I hate when I get like that. I just, i hate it so much when you talk about her."
@@ -656,7 +714,7 @@ label cemetery_scene_1:
     v "It might be good for the both of us, don't you think?"
     e "I- I guess."
     e "Sure."
-    "I take one more look at val and walk towards the door."
+    "I take one more look at Val and walk towards the door."
     "I have fond memories of the cemetery, even if {i}she{/i} is buried there"
     "I walk with Val to the cemetery, it's always weird walking around in the daylight."
     "We always get shifty looks from everyone."
@@ -665,7 +723,7 @@ label cemetery_scene_1:
     "We get to the cemetery quick enough, Val takes us over to her grave."
     v "Hey, {glitch=5.0}{color=#bababa}{b}████.{/b}{/color}{/glitch}"
     e "God I hate that name so much."
-    v "I'm back, I brough Evelyn this time."
+    v "I'm back, I brought Evelyn this time."
     v "I know you two never met, but she's helping me heal."
     v "She was there for me when you..."
     "Valerie is crying. I want to comfort her but, I'm so uncomfortably angry that I can't."
@@ -734,7 +792,9 @@ label cemetery_scene_2:
 
 
 
-                                                           
+label try_to_remember:
+    "Scene - try hard to remember"
+                                                               
                         
 
 
