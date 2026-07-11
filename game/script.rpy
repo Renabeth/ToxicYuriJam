@@ -25,6 +25,8 @@ image eve vomit = im.Scale("images/eve vomit.png", 500, 1100)
 
 
 image val normal = im.Scale("images/val normal.png", 500, 1100)
+image val normal 75 = im.Scale("images/val normal 75.png", 500, 1100)
+image val normal 25 = im.Scale("images/val normal 25.png", 500, 1100)
 image val angry = im.Scale("images/val angry.png", 500, 1100)
 image val annoyed = im.Scale("images/val annoyed.png", 500, 1100)
 image val crying = im.Scale("images/val crying.png", 500, 1100)
@@ -42,6 +44,9 @@ default came_from_music = False
 default came_from_cant_feel_anymore = False
 default came_from_drugs = False
 default came_from_cemetery_1 = False
+default came_from_offer_kit_drugs = False
+default came_from_answer_phone = False
+
 
 
 # Custom Transitions
@@ -381,7 +386,6 @@ label answer_door:
 
                 "Samsara - In Vitro":
                     $ persistent.heard_samsara = True
-                    "yap about samsara"
 
                     if (persistent.heard_deaftunes
                         and persistent.heard_reused
@@ -389,6 +393,30 @@ label answer_door:
                         $ achievement.grant("oldhead")
                         $ renpy.notify("Achievement Unlocked: Oldhead")
 
+                    e "Here's something."
+                    "I pick up the Samsara CD. Val loves this band."
+                    v "I thought you weren’t gonna put on my CDs?"
+                    e "Had a change of heart."
+                    e "PLus their music is nostalgic to me."
+                    v "You're so old. My mom would play this in the car when I was a kid."
+                    e "Well clearly you have a young and hip mom."
+                    v "Or you're just old."
+                    e "We're practically the same age."
+                    v "Girl I was literally 14 when you graduated high school."
+                    e "Ugh gross don't say that or else I'm picking another CD."
+                    e "And besides, I didn't graduate high school."
+                    v "And what an invigorating life you lead now."
+                    e "I know, I'm amazing."
+                    e "Now zip it and listen to your mommy's music taste."
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
                     jump mem_hallucination_2
     #end scene
     return
@@ -400,6 +428,41 @@ label answer_door_alt:
     # Potentially alternate paths to infidelity, good, and suicide endings
 
     e "Honestly that knocking is pissing me off."
+    play sound "audio/sfx_knocking.mp3" volume 1.0 #kit knocking
+    "Guess I'll go see what she wants now."
+    "I stumble towards the door, the faint memory is still racking my brain."
+    "I reach the door and shout through the crack."
+    "Oh good, the banging is back."
+    "Guess I'll go see what she wants now."
+    "I stumble towards the door, the faint memory is still racking my brain."
+    "I reach the door and shout through the crack"
+    e "Kit we're kinda busy right now! Could you like, piss off."
+    k "AWWWW but i brought over fruit!!!!!!!! ☆♡"
+    k "C'MONNN EVEEE just let me innnnnn,, you'll LOVE these fruitss!!!**"
+    e "If I come out there will you shut up."
+    k "Mhm mhm sure yes totally~"
+    "She's not gonna shut up either way."
+    "But I don't want her to bother Val while she comes down."
+    "I open the door and walk outside, closing it behind me."
+    k "Oh WOW, your apartment looks kinda gross Eve..."
+    k "How do you live like that?"
+    k "You NEED to let me come over and deep clean your place sometime."
+    e "That's not happening."
+    k "OH! I almost forgot!"
+    "She places a heavy basket of fruit into my hands."
+    k "Grew these myself!! Hehe. ♡~"
+    "She looks way too proud of herself, gross."
+    k "Oh my gosh Eve-"
+    e "Evelyn."
+    k "Eve your eyes are so red, are you high?"
+    e "Not yet."
+
+    menu:
+        "Offer kit drugs":
+            jump offer_kit_drugs
+        "They're all for me":
+            ""
+
 
 label kit_at_door:
     #Scene - Kit at the door after the player decides to do drugs
@@ -468,7 +531,161 @@ label kit_at_door:
 
             
 
+label offer_kit_drugs:
+    scene black
+    $ came_from_offer_kit_drugs = True
+    e "You wanna join me?"
+    k "I dunnoooo, my mom does't really want me doing drugs."
+    e "Aww c'mon, they're just like the plants you grow it's nothing unnatural."
+    k "I meannn, I GUESS if it's plant based I can try."
+    k "Should I come inside?"
+    e "No. It's gross in there."
+    k "Awwwwwwwwwww, c'mon let me clean it up just a LITTLE."
+    e "Nope, off limits."
+    k "Okayyy FINE, my apartment then!! ^v^"
+    "She grabs my wrist tightly and drags me over to her apartment."
+    "I break free for a second to lock my door."
+    "The second we enter her apartment I'm blinded by bright colors and plants everywhere."
+    "We sit down on her floor."
+    k "SOOO what drugs are we doing!! hehe"
+    e "You are {i}very{/i} enthusiastic."
+    k "Well I'm all excited now!!!"
+    e "Alright, alright."
+    "I pull out a baggie of mushrooms from my pocket, Kit lights up at the sight."
+    k "MUSHROOMS!!♡♡"
+    e "Shhh, not so damn loud, jesus."
+    k "Oh! Right,, we gotta be... secretive..."
+    e "No you dipshit you're just gonna make me deaf."
+    "Kit and I each take some."
+    "Me a lot more than her."
+    k "Welp, down the hatch! ⋆°✩"
+    "We lay back and relax, I let my eyes rest as everything feels nice."
+    "I hear some voices I recognize and I open my eyes."
+    "No one's there but the walls feel weird, and the voices start getting louder."
+    jump mem_hallucination_2
 
+label answer_phone:
+    scene black with fuzzy_transition
+    #"Scene - Eve answers Val's phone"
+    "I feel myself returning to reality."
+    "I look over at Kit who's also starting to come down."
+    "The argument is still ringing through my head."
+    "She was such a bitch that night. Wouldn't leave me the hell alone."
+    k "EVE! That felt so good OMG. Do you have any more??"
+    e "Yeah, it feels good, and no."
+    "I probably do have more at the apartment but I'm not telling her that."
+    "Suddenly I feel a persistent buzz in my pocket."
+    "I reach in there and pull out a phone."
+    "It's not mine though, it's Valerie's. I must've accidentally taken it this morning."
+    "Shit, she's getting a call."
+    "It's one of her friends, I shouldn't answer."
+    "I'll just text back for her."
+    "\"Hey sorry, can't answer rn im with my girlfriend\""
+    "It buzzes again immediately."
+    "\"kk! we just havent called in awhile so i wanted to hear your voice! call me l8r\""
+    k "OH HEY! Isn't that Valerie's phone?"
+    k "I'd recognize her SUPER cute phone case anywhere! ✩~"
+    
+
+    menu:
+        k "Why do you have her phone?"
+        "Explain why you have the phone":
+            e "Oh uh, I think I grabbed it by accident this morning."
+            k "Oh! Okay!"
+            k "How's Val been?? I haven't seen her in FOREVER."
+            k "Is she avoiding me? I haven't even seen her at her job."
+            e "She's fine, she just quit her job is all."
+            k "OH? Why?"
+            e "They weren't paying her enough, had to uh look elsewhere."
+            k "Where's she working now?"
+            e "She's still looking okay."
+            
+            menu:
+                k "Well how has your relationship been~~"
+                "Confide in her":
+                    $ came_from_answer_phone = True
+                    e "To be honest, it's been... a little rocky."
+                    k "Oh! Spill the beans girl I can give advice!"
+                    "Ugh, she's way too excited about this."
+                    "I should just back out, or lie."
+                    e "Truth is, I've been... remembering things."
+                    k "Mhm mhm??"
+                    e "Fights. Old fights we've had."
+                    k "Oh."
+                    "She looks like she's regretting being so excited now that it's serious."
+                    e "Val has always been so damn critical of me, always criticizing the way I live my life."
+                    e "Comparing me to her ex-girlfriend, like she loves her more than me."
+                    k "Oh Eve, that's terrible."
+                    e "Thank you. It's good to have someone be on my goddamn side for once."
+                    e "There was this one time with this doctor..."
+                    e "I can just barely remember it."
+                    e "It was like..."
+                    jump mem_hallucination_3
+                "It's none of her businness":
+                    "b"
+        "Flirt with Kit to get her off your back":
+            ""
+
+
+label kit_comes_over:
+    #"Scene - kit comes over to eves apartment"
+    scene black with fuzzy_transition
+    e "And... yeah..."
+    k "Eve... I think she was jusst worried about you."
+    e "N-no she.. she just wants to make me like her stupid ex."
+    k "Eve I think you're just uncomfortable with her loving both of you."
+    k "It seems like you're just pushing her away."
+
+    menu:
+        "Why don't we go back to your apartment and talk it out with her, okay?"
+        "Bring Kit back to your apartment":
+            jump val_discovery
+        "I know Valerie better than her":
+            "a"
+
+
+label val_discovery:
+    #Scene - Eve and Kit discover Val is dead
+    e "Fine."
+    "I stand up and walk with Kit back over to our apartment."
+    "I feel uneasy about this but I can't place why."
+    "I unlock the door and walk in, Kit follows behind me."
+    e "Yeah so, here's where we live."
+    e "Sorry if it smells like shit we don't have guests over."
+    e "Baby! I'm home!"
+    show val normal at right #change expression later
+    v "Oh hey! What's Kit doing here?"
+    e "Oh y'know she-"
+    k "OH!! Eve! I think she's sleeping!"
+    e "What?"
+    e "No she's right here."
+    "Just as I finish my thought I look up at Kit-"
+    "and she's vomitting."
+    k "Oh my god..."
+    k "sh-she's-"
+    k "Dead."
+    e "Um no Kit, she's right here."
+    show val normal 75 at right with fuzzy_transition
+    "I look over at Val but something's very wrong."
+    "She isn't focused in my vision anymore." 
+    show val normal 25 at right with fuzzy_transition
+    "Even her voice is starting to sound off."
+    "I feel my heartbeat start to well up in my chest."
+    "It's pumping hard and I start panicking."
+    v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?...{/b}{/color}{/glitch}"
+    hide val normal 25
+    "No, no no no no no-"
+    e "NO!"
+    "I look back over at Kit but something is different."
+    "I see her now."
+    "Valerie."
+    "A way of panic fills my entire body."
+    "I rush over to the table and grab a pill bottle and start downing them."
+    "Kit tackles me to the ground before I can finish the bottle."
+    k "Eve! Eve!!"
+    "I writhe in her grasp until I feel the walls start to get blurry again as I start to remember."
+    jump mem_hallucination_4
+    #TODO: need a boolean to jump to aftermath and come back here 7/11
 
 
 label mem_hallucination_1:
@@ -501,7 +718,6 @@ label mem_hallucination_1:
     
     return
 
-    #jump landlord_knocks
 
 label mem_hallucination_2:
     scene bg room with spiral_transition
@@ -542,6 +758,10 @@ label mem_hallucination_2:
     if came_from_music:
         $ came_from_music = True 
         jump after_music
+
+    if came_from_offer_kit_drugs:
+        $ came_from_offer_kit_drugs = True 
+        jump answer_phone
     
     return
 
@@ -598,7 +818,7 @@ label mem_hallucination_3:
     vh "Please… I'm just trying to get you to be better to yourself."
     eh "So I can be more like {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}, right?"
     "She hides her face in her hands. It doesn't matter. I can tell she's crying anyways."
-    vh "You think I could go through at again?"
+    vh "*sniff* You think I could go through at again?"
     eh "I think you'd survive, yeah."
     vh "That's not the same thing and you know it."
 
@@ -610,13 +830,18 @@ label mem_hallucination_3:
     if came_from_cemetery_1:
         $ came_from_cemetery_1 = True
         jump try_to_remember
+
+    if came_from_answer_phone:
+        $ came_from_answer_phone = True
+        jump kit_comes_over
+
     return
     #jump cemetery_scene_2
 
 
 label mem_hallucination_4:
-    "Scene - memory hallucination 4. Evelyn Remembers having sex with Valerie and making her take drugs until she overdoses"
-
+    "Scene - memory hallucination 4. Evelyn Remembers having sex with Valerie and making her take drugs until she overdoses."
+    #start here 7/11
 label sex_hallucination_1:
     "Scene - sex hallucination 1"
 
@@ -636,7 +861,7 @@ label sex_hallucination_2:
 label after_music:
     scene bg room with fuzzy_transition
     # "Scene - Eve starts crying listening to music after hallucination 2"
-    "The voices fade as I finally start to feel normal."
+    "The voices fade as I finally start to feel normal again."
     "My eyes open to the sight of a familiar stained wet gross ceiling."
     "My skull is banging like a drum."
     v "Baby are you ok?"
@@ -802,18 +1027,21 @@ label try_to_remember:
             menu:
                 v "Baby, look at me."
                 "Look at her":
+                    show eve normal at left
+                    show val normal at right
                     v "See how much I cared about you."
                     "I look up at her."
+                    show val normal 75 at right with fuzzy_transition
                     "But she's wrong."
                     "She looks... wrong."
-                    "She isn't focused in my vision anymore."
-                    #TODO: Add lower opacity Val here
-                    #TODO: Use glitch text for val?
+                    "She isn't focused in my vision anymore." 
+                    show val normal 25 at right with fuzzy_transition
                     "Even her voice is starting to sound off."
                     "I feel my heartbeat start to well up in my chest."
                     "It's pumping hard and I start panicking."
                     v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?...{/b}{/color}{/glitch}"
-                    "No, no no no no no"
+                    hide val normal 25
+                    "No, no no no no no-"
                     e "NO!"
                     "I scream at full volume."
                     "Everyone's staring at me. They're all staring."
@@ -972,7 +1200,57 @@ label try_to_remember:
 
 
         "She's still wrong":
-            "She thinks she's better than me." #TODO: PICK UP HERE
+            "She thinks she's better than me." 
+            "She thinks I can't take care of myself."
+            "She thinks I'm {i}so{/i} fucking pathetic."
+            "I bet she wishes I would just turn into {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}"
+            "So she could see her again."
+            "So she could touch her again."
+            "So she could get rid of me."
+            "You fucking disgust me."
+            v "Sweetie?"
+            e "I'm right... you don't even care about me."
+            e "You just want me to become her."
+            e "Well too bad."
+            e "I decide who I become."
+            v "Evelyn-"
+            "Before she could even start to spit her bullshit argument at me I ran away."
+            "I ran back to our apartment."
+            "I climbed up the stairs and blindly sprinted towards our door."
+            "Until I slammed into something huge and fell down."
+            k "EVE?"
+            "I look up and see Kit standing in front of me."
+            k "OH MY GOSH!! I’m so so sorry, let me help you up!"
+            "She grabs my arm and roughly pulls me back up, it hurts a little."
+            e "It's fine."
+            k "What happened??? You look so panicked!"
+            e "It's fine."
+            k "Are you sure??"
+            e "I said it's fine. Val was just being a bitch."
+            k "Oh no... What did she do?"
+            e "She thinks she knows better than me."
+            e "All she does is nag and yell at me for minding my own goddamn fucking business."
+            e "So what if I wanna get a little high some of the time?"
+            e "She doesn't have to drag me to some stupid hack doctor about it."
+            e "And all this stupid bullshit."
+            e "\"Baby, get a job \"{glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch} wouldn't have left the food out.\""
+            e "I've heard enough about her stupid fucking ex, I hope she stays dead in that hole."
+            k "EVE!"
+            "She grabs me on the shoulder and shakes me a little."
+            k "I think maybe Valerie has a point. You don't seem healthy."
+            e "Oh so you know better than me too."
+            k "I just think that both you and Valerie would be happier if you took some steps to get better habits."
+            e "Oh so now you think you know Valerie better than I do?!"
+            k "Eve, that's not what I meant."
+
+            menu:
+                "I know Valerie better than her.":
+                    "Fuck off, you both just wanna turn me into her stupid perfect ex."
+                    k "Eve, I-"
+                    e "THAT'S NOT MY FUCKING NAME."
+                    menu:
+                        "I know Valerie.":
+                            jump delusion_ending_kit
 
                                                                
                         
@@ -1030,11 +1308,24 @@ label infidelity_ending:
                     ""
                 "Confide in her": # Delusion endning
                     "Kit says that Eve is in the wrong"
-                    jump delusion_ending
+                    jump delusion_ending_kit
 
 
-label delusion_ending:
-    "Evelyn never learns of Valerie's death and impersonates her / mentally becomes 'her'"
+label delusion_ending_kit:
+    #"Evelyn never learns of Valerie's death and impersonates her / mentally becomes 'her'"
+    "I push her out of the way and run into my apartment."
+    "She doesn't know anything."
+    "I'm right."
+    "I'M RIGHT."
+    "Evelyn's right."
+    "She's always right."
+    "Isn't that right?"
+    menu:
+        "Valerie.":
+            ""
+
+label delusion_ending_drugs:
+
 
 label good_ending:
 
