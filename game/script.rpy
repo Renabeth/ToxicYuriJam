@@ -912,7 +912,7 @@ label offer_kit_drugs:
     scene bg hallway
     show eve smirk at left
     show kit normal at right
-    #TODO: kits room background
+    scene bg room kit
     $ came_from_offer_kit_drugs = True
     play music "audio/music_track_3.mp3"
     e "You wanna join me?"
@@ -1106,7 +1106,9 @@ label val_discovery:
     e "No she's right here."
     stop music fadeout 0.3
     "Just as I finish my thought I look up at Kit-"
+    show kit vomit at right
     "and she's vomitting."
+    show kit concerned
     k "Oh my god..."
     k "sh-she's-"
     k "Dead."
@@ -1117,6 +1119,7 @@ label val_discovery:
     show val normal 25 at right with fuzzy_transition
     "Even her voice is starting to sound off."
     play music "audio/music_track_hallucination.mp3"
+    show eve mental breakdown at left
     "I feel my heartbeat start to well up in my chest."
     "It's pumping hard and I start panicking."
     v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?{/b}{/color}{/glitch}"
@@ -1353,7 +1356,7 @@ label mem_hallucination_4:
     "I can finally remember it, my heart feels like it's going to rip out of my chest, and I'm covered in vomit."
     "And just like that I'm back there. in that moment. I'm laying down, and she's on top of me."
     scene black with spiral_transition
-    scene doctor with spiral_transition
+    scene bg bed with spiral_transition
     # another scene trans here
     vh "Baby, are you sure?"
     eh "It'll be okay I promise."
@@ -1372,6 +1375,7 @@ label mem_hallucination_4:
     vh "*blech*"
     "She vomited all over me, I don't even think I stopped touching myself until she fell limp on top of me."
     "Then I panicked."
+    show eve mental breakdown at left
     eh "V-val, Valerie? A-are you okay??"
     "I felt her convulsing on top of me."
     "The amount of substances in me at the time definitely didn't help."
@@ -1387,7 +1391,7 @@ label mem_hallucination_4:
     "I don't know if it was from the shock or all the drugs in my system but when I woke up..."
     "Valerie was there like she always was."
     "I spotted a body pillow on the bed that I hadn't noticed before."
-    "I just assumed she bought it. But I guess, it was just as she was."
+    "I just assumed she bought it. But I guess, it was just as lifeless as she was."
     stop music fadeout 1.0
     if came_from_val_discovery:
         $ came_from_val_discovery = True
@@ -1623,21 +1627,25 @@ label cemetery_scene_1_alt:
 label cemetery_scene_2:
     #Eve arrives at the cemetery with Val's body
     play music "audio/sfx_night_ambience.mp3"
+    scene bg cemetery with fade
     e "We're here. It's chilly again."
     e "Figures. I'd pick a night where the weather decides to remind me of you."
     e "Feels like just yesterday you were here mourning… her."
     e "I'm so sorry that you have to join her."
     e "I hope she treats you better up there than I could down here."
     e "heheh..."
+    show bg tree with dissolve
     "I dragged her over by the only tree in the cemetery."
     e "This seems like a nice palce, right? Nice and in the shade."
     "I jammed the shovel into the ground and began digging."
+    show bg val grave dug with dissolve
     "I dug and dug until the hole was deep enough."
     e "I'm sorry I couldn't get a coffin for you, those are really expensive."
     e "You deserve better."
     e "I hope the bag keeps you safe at least."
     "I push her into the hole."
     "I wince as I hear her slam against the ground."
+    show bg val buried fresh
     "Goodbye. Lover."
     "I buried Val in that pit."
     "Once I had filled it back up I rummaged around the cemetery for rocks to create a makeshift gravestone."
@@ -1706,12 +1714,15 @@ label try_to_remember:
                             "Finally, I see her."
                             scene bg dead val with fuzzy_transition
                             #play music "audio/music_panic.mp3" fadein 0.3
+                            show eve sobbing at left
                             "I didn't see her before..."
                             "...but I see her now."
                             "A wave of nausea hits me. I feel it well up in my throat."
+                            show eve vomit at left
                             "I can't stop myself from vomiting into my hand at the sight of it."
+                            show eve mental breakdown at left
                             "I'm so dizzy."
-                            "I can't stand up straight." #hehe straight
+                            "I can't stand up straight." 
                             "I walk over to the bed and look down at it."
                             e "Valerie."
                             "I'm crying again."
@@ -1728,8 +1739,10 @@ label try_to_remember:
                                 "KILL YOURSELF":
                                     jump suicide_ending
                                 "vomit.":
+                                    show eve vomit at left
                                     "I throw up again, all over my hand and on her."
                                     "I'm so nauseous I can't even think."
+                                    show eve sobbing at left
                                     "My whole body is shaking violently."
                                     "It feels like static."
                                     menu:
@@ -1922,7 +1935,9 @@ label sesbian_lex:
     $ came_from_sesbian_lex = True
     # "Scene - Eve has 'sex' with Vallerie"
     #jump mem_hallucination_1
+    show eve horny at left
     e "God, I wanna fuck."
+    show val happy at right
     v "Yeah?"
     e "Yeah."
     v "Okay, but you know the rules."
@@ -2049,6 +2064,7 @@ label suicide_ending:
     stop music fadeout 0.3
     play music "audio/music_dramatic.mp3" fadein 0.3
     scene bg dead val
+    show eve sobbing at left
     "I can't do this."
     "She can't be."
     "She can't be."
@@ -2074,6 +2090,7 @@ label suicide_ending:
 
 label bad_touch_ending:
     stop music fadeout 0.3
+    scene black with spiral_transition
     #$ came_from_bad_touch True
     "I can't restrain myself any longer."
     "The sight of her naked body just keeps teasing me."
@@ -2108,10 +2125,12 @@ label infidelity_ending:
     e "She doesn't need to know."
     "I grab her dick."
     e "Val thinks it's hot."
+    show eve sobbing at left
     "I start crying."
     e "Val is dead."
     e "Val broke up with me."
     e "Val loved her more than me."
+    show eve crying at left
     e "Kit."
     e "Put it in me. Now."
     
