@@ -699,18 +699,6 @@ screen achievements():
 
             text "Achievements" size 50
 
-            # Achievement 1
-            if achievement.has("first_achievement"):
-                text "💉 First Achievement - You did something awesome."
-            else:
-                text "❓ First Achievement - Locked"
-
-            # Achievement 2
-            if achievement.has("secret"):
-                text "💉 Secret - Shhhhhhh."
-            else:
-                text "❓ Secret - Locked"
-
             # Music Achievement
             if achievement.has("oldhead"):
                 text "💉 Wow you *really* like music"

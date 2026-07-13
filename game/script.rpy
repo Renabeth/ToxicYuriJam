@@ -49,6 +49,13 @@ default came_from_offer_kit_drugs = False
 default came_from_answer_phone = False
 default came_from_val_discovery = False
 default came_from_sesbian_lex = False
+default came_from_music_alt = False
+default came_from_true_ending = False
+default came_from_good_ending = False
+default came_from_suicide_ending = False
+default came_from_delusion_ending = False
+default came_from_bad_touch = False
+
 
 
 
@@ -145,7 +152,7 @@ label start:
     "*flick*"
     "Shit, lighter's busted."
     "I do not have it in me right now to walk back home."
-    "I look back up and across the field of foggy graves i see a girl standing over a grave."
+    "I look back up and across the field of foggy graves I see a girl standing over a grave."
     "Weirdly enough she isn't looking down and bawling her eyes out."
     "Instead, she's looking at me."
     "Now she's walking towards me."
@@ -158,7 +165,8 @@ label start:
     vq "She would've told me to stop staring and help you out."
     e "Well that's very kind of her, it's not often I get to smoke with a ghost."
     "She stares at me for a second, then pulls out a tiny purple lighter and-"
-    vq "It's not often I find druggies wandering the cemetery to be this approachable."
+    vq "I don’t usually see many druggies in this cemetery, certainly none as approachable as you."
+    e "Guess I'm special."
     e "You want some?"
     vq "No thanks, I don't like the taste of nicotine."
     e "I wouldn't be too worried about that, got something much tastier in these."
@@ -168,15 +176,16 @@ label start:
     e "Usually whenever I'm on the hunt for grieving widows to pick up."
     "She winces a little, yeah probably a shitty line to pull on the chick visiting her dead girlfriend."
     "Dumbass."
-    v "Well, for the record if you're trying to pick up chicks then the cemetery probably isn't your best bet."
+    v "For the record if you're trying to pick up chicks then the cemetery probably isn't your best bet."
     e "And yet you're still talking to me."
     "She pauses for a moment."
-    v "Hey so... you got a phone?"
+    v "Hey so, you got a phone?"
     "I watch her reach into her pocket and pull out a crumpled up receipt for flowers."
     "She scribbles her number on it and hands it to me."
     v "You seem cool, keep in contact."
-    e "That's concerning."
-    v "You were the one trying to pick up widows."
+    e "First time I've gotten a girl's number in a cemetery."
+    v "You were the one trying pick up lines on grieving widows."
+    e "Guess so..."
     "She practically runs away before I can respond."
     "Weird, I'll probably never see her again anyways so whatever."
 
@@ -234,7 +243,7 @@ label stay_in_bed:
     "I can barely hear her breathing. It's kinda cute, in a way."
     v "*yawwwn* Good morning baby."
     v "...Who's banging?"
-    e "I dunno, someone with no decency"
+    e "I dunno, someone with no decency."
     v "Prolly the neighbor, doesn't she know we're trying to sleep?"
     e "I know, what kind of person bangs on someone's door so early?"
     "I glance over at our alarm clock."
@@ -247,7 +256,7 @@ label stay_in_bed:
     e "Well I think your bedhead doesn't suit you." #this part may change
     e "It looks much better than the rest of you, stands out."
     "God I'm such a dick."
-    v "Well I guess if we're up anyways we should do something"
+    v "Well I guess if we're up anyways we should do something."
     e "Yeah, guess so."
     
 
@@ -374,9 +383,28 @@ label answer_door:
             e "Got it, so none of your CDs?"
             "Val roles her eyes at me, fair."
             menu:
-                "deaftunes - throughout the fern":
+                "Deaftunes - Throughout the Fern":
                     $ persistent.heard_deaftunes = True
-                    "yap about deaftunes"
+                    "Here's a classic."
+                    #show drawing-album-cover at truecenter
+                    v "I thought you weren't gonna put on my CDs?"
+                    e "Had a change of heart"
+                    e "plus Vhulva is a great song."
+                    v "It's an {b}AMAZING{/b} song."
+                    v "You can't {b}JUST{/b} appreciate the classics though. Ramone, the first song on NX is iconic."
+                    e "Yeah yeah whatever you say dweeb."
+                    "She's making a mocking face at me."
+                    #hide drawing-album-cover
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
+
 
                     if (persistent.heard_deaftunes
                         and persistent.heard_reused
@@ -388,7 +416,25 @@ label answer_door:
 
                 "The Reused - Drawing":
                     $ persistent.heard_reused = True
-                    "yap about the reused"
+                    "Oh yeah here we go"
+                    show drawing-album-cover at truecenter
+                    v "Y'know I actually kinda prefer their older stuff."
+                    e "I mean don't get me wrong, I enjoy their self titled-"
+                    e "but this album is nonstop hits-"
+                    e "and definitely underrated."
+                    v "I mean it's got some good tracks, but The Smell of Paint is so iconic."
+                    v "No track here has this much staying power."
+                    e "Whatever you say poser."
+                    hide drawing-album-cover
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
 
                     if (persistent.heard_deaftunes
                         and persistent.heard_reused
@@ -444,7 +490,7 @@ label answer_door:
 
                     e "Here's something."
                     "I pick up the Samsara CD. Val loves this band."
-                    v "I thought you weren’t gonna put on my CDs?"
+                    v "I thought you weren't gonna put on my CDs?"
                     e "Had a change of heart."
                     e "PLus their music is nostalgic to me."
                     v "You're so old. My mom would play this in the car when I was a kid."
@@ -574,8 +620,147 @@ label kit_at_door:
     menu:
         "That gave me such a headache, I gotta do something to relax."
         "Get even higher":
+            #TODO: Not finished
             ""
-        "Listen to music":
+        "Listen to some music":
+            #TODO: Add music dialogue here too
+            $ came_from_music_alt = True
+            e "This silence is killing me, I'm gonna put on an album."
+            "I start rummaging through the pile of garbage next to the CD player."
+            v "Pick something that isn't total trash please."
+            e "Got it, so none of your CDs?"
+            "Val roles her eyes at me, fair."
+            menu:
+                "deaftunes - throughout the fern":
+                    $ persistent.heard_deaftunes = True
+                    "Here's a classic."
+                    #show drawing-album-cover at truecenter
+                    v "I thought you weren't gonna put on my CDs?"
+                    e "Had a change of heart"
+                    e "plus Vhulva is a great song."
+                    v "It's an {b}AMAZING{/b} song."
+                    v "You can't {b}JUST{/b} appreciate the classics though. Ramone, the first song on NX is iconic."
+                    e "Yeah yeah whatever you say dweeb."
+                    "She's making a mocking face at me."
+                    #hide drawing-album-cover
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
+
+                    if (persistent.heard_deaftunes
+                        and persistent.heard_reused
+                        and persistent.heard_samsara):
+                        $ achievement.grant("oldhead")
+                        $ renpy.notify("Achievement Unlocked: Oldhead")
+
+                    jump mem_hallucination_2
+
+                "The Reused - Drawing":
+                    $ persistent.heard_reused = True
+                    "Oh yeah here we go"
+                    show drawing-album-cover at truecenter
+                    v "Y'know I actually kinda prefer their older stuff."
+                    e "I mean don't get me wrong, I enjoy their self titled-"
+                    e "but this album is nonstop hits-"
+                    e "and definitely underrated."
+                    v "I mean it's got some good tracks, but The Smell of Paint is so iconic."
+                    v "No track here has this much staying power."
+                    e "Whatever you say poser."
+                    hide drawing-album-cover
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
+
+                    if (persistent.heard_deaftunes
+                        and persistent.heard_reused
+                        and persistent.heard_samsara):
+                        $ achievement.grant("oldhead")
+                        $ renpy.notify("Achievement Unlocked: Oldhead")
+
+                    jump mem_hallucination_2
+
+                "Mindless Self Benevolence - or":
+                    $ persistent.heard_reused = True
+
+                    if (persistent.heard_deaftunes
+                        and persistent.heard_reused
+                        and persistent.heard_samsara):
+                        $ achievement.grant("oldhead")
+                        $ renpy.notify("Achievement Unlocked: Oldhead")
+
+                    e "Here we go."
+                    show or-album-cover at truecenter
+                    show val annoyed at right
+                    v "Ugh. Really? This shitty band again?"
+                    e "This shit fucks and you can't deny it."
+                    e "I've heard you sing Medication around the apartment before."
+                    v "Don't they literally say slurs in like half of their songs?"
+                    e "Listen I'm not saying the damn slurs."
+                    v "You still shouldn't support them."
+                    e "I don't know if this four dollar thrift store CD qualifies as supporting them."
+                    e "Now shut it and vibe."
+                    hide or-album-cover
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
+
+                    
+
+                    jump mem_hallucination_2
+
+                "Samsara - In Vitro":
+                    $ persistent.heard_samsara = True
+
+                    if (persistent.heard_deaftunes
+                        and persistent.heard_reused
+                        and persistent.heard_samsara):
+                        $ achievement.grant("oldhead")
+                        $ renpy.notify("Achievement Unlocked: Oldhead")
+
+                    e "Here's something."
+                    "I pick up the Samsara CD. Val loves this band."
+                    v "I thought you weren’t gonna put on my CDs?"
+                    e "Had a change of heart."
+                    e "PLus their music is nostalgic to me."
+                    v "You're so old. My mom would play this in the car when I was a kid."
+                    e "Well clearly you have a young and hip mom."
+                    v "Or you're just old."
+                    e "We're practically the same age."
+                    v "Girl I was literally 14 when you graduated high school."
+                    e "Ugh gross don't say that or else I'm picking another CD."
+                    e "And besides, I didn't graduate high school."
+                    v "And what an invigorating life you lead now."
+                    e "I know, I'm amazing."
+                    e "Now zip it and listen to your mommy's music taste."
+                    "I sit back and relax on the bed while the sounds of the album fill the apartment."
+                    "The noises of the roads outside bleed through the walls and muddle with the melodies of the music."
+                    "God, this brings back memories."
+                    "We've been dating for almost 2 years now."
+                    "Ugh, feels like I'm back there."
+                    show eve tired at left
+                    "My vision starts to blur and the walls are... wrong."
+                    "I try blinking to clear my eyes but it only gets worse."
+                    "My ears start to ring with familiar voices."
+                    jump mem_hallucination_2
+            # listen to music 
             jump after_music_alt
 
             
@@ -670,10 +855,7 @@ label answer_phone:
                     e "I can just barely remember it."
                     e "It was like..."
                     jump mem_hallucination_3
-                "It's none of her businness":
-                    e "It's none of your business."
-                    e "I'm- I'm going back to the apartment."
-                    k "Wait!"
+                
 
                     "I storm back to the apartment and lay on my bed next to Val."
         "Flirt with Kit to get her off your back":
@@ -763,7 +945,7 @@ label val_discovery:
     "Even her voice is starting to sound off."
     "I feel my heartbeat start to well up in my chest."
     "It's pumping hard and I start panicking."
-    v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?...{/b}{/color}{/glitch}"
+    v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?{/b}{/color}{/glitch}"
     hide val normal 25
     "No, no no no no no-"
     e "NO!"
@@ -836,6 +1018,7 @@ label mem_hallucination_1:
 
 
 label mem_hallucination_2:
+    scene black with spiral_transition
     scene bg room with spiral_transition
     show val angry at right
     show eve angry at left
@@ -875,6 +1058,10 @@ label mem_hallucination_2:
         $ came_from_music = True 
         jump after_music
 
+    if came_from_music_alt:
+        $ came_from_music_alt = True 
+        jump after_music_alt
+
     if came_from_offer_kit_drugs:
         $ came_from_offer_kit_drugs = True 
         jump answer_phone
@@ -888,6 +1075,7 @@ label mem_hallucination_2:
 label mem_hallucination_3:
     #"Scene - memory hallucination 3. Evelyn Remembers a doctors appointment where a doctor berates her and Valerie for their excessive drug usage"
     scene black with spiral_transition
+    scene bg doctor with spiral_transition
     "Doctor?" "Mixing substances, not sleeping, not eating regularly. These are very dangerous patterns of behavior. this isn't something I can just ignore."
     eh "I can ignore it fine enough"
     "Doctor?" "This hasn't gotten any better since your last physical, Evelyn. I'm worried about you doing this to yourself."
@@ -930,7 +1118,7 @@ label mem_hallucination_3:
     eh "Nothing like her."
     "Val looks like she's on the brink of tears."
     vh "Don't talk about her like that."
-    "I can't stand it when she looks at me like that. Like i hurt her. Like it's my fault."
+    "I can't stand it when she looks at me like that. Like I hurt her. Like it's my fault."
     vh "Please… I'm just trying to get you to be better to yourself."
     eh "So I can be more like {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}, right?"
     "She hides her face in her hands. It doesn't matter. I can tell she's crying anyways."
@@ -960,6 +1148,7 @@ label mem_hallucination_4:
     "I can finally remember it, my heart feels like it’s going to rip out of my chest, and I'm covered in vomit."
     "And just like that I'm back there. in that moment. I'm laying down, and she's on top of me."
     scene black with spiral_transition
+    scene doctor with spiral_transition
     # another scene trans here
     vh "Baby, are you sure?"
     eh "It'll be okay I promise."
@@ -1060,7 +1249,8 @@ label after_music:
 
 
 label after_music_alt:
-    #scene bg room with fade
+    scene black with fuzzy_transition
+    scene bg room with fuzzy_transition
     "The voices fade as I finally start to feel normal again."
     "My eyes open to the sight of a familiar stained wet gross ceiling."
     "My skull is banging like a drum."
@@ -1087,11 +1277,11 @@ label after_hallucination_panic:
 label cemetery_scene_1:
     # "Scene - Eve and Hallucination Valerie make up and go to the cemetery" (try to patch things up)
     # TODO: Make this cemetery BG
-    scene bg room with fade
+    scene bg cemetary
     $ came_from_cemetery_1 = True
     e "Aigh, I'm sorry, I just, I keep remembering shit."
     e "Stupid fucking arguments we've had."
-    e "I just- I hate when I get like that. I just, i hate it so much when you talk about her."
+    e "I just- I hate when I get like that. I just, I hate it so much when you talk about her."
     e "I get so angry when you talk about her."
     e "Even if she's the entire reason we met."
     e "I hate it so fucking much."
@@ -1107,7 +1297,7 @@ label cemetery_scene_1:
     "I guess probably because I look like shit."
     "Or maybe they just hate to see two girls together."
     "We get to the cemetery quick enough, Val takes us over to her grave."
-    v "Hey, {glitch=5.0}{color=#bababa}{b}████.{/b}{/color}{/glitch}"
+    v "Hey, {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}."
     e "God I hate that name so much."
     v "I'm back, I brought Evelyn this time."
     v "I know you two never met, but she's helping me heal."
@@ -1146,7 +1336,7 @@ label cemetery_scene_2:
     e "heheh..."
     "I dragged her over by the only tree in the cemetery."
     e "This seems like a nice palce, right? Nice and in the shade."
-    "I jammed the shovel into the ground and started digging."
+    "I jammed the shovel into the ground and began digging."
     "I dug and dug until the hole was deep enough."
     e "I'm sorry I couldn't get a coffin for you, those are really expensive."
     e "You deserve better."
@@ -1168,6 +1358,7 @@ label cemetery_scene_2:
 label try_to_remember:
     #"Scene - try hard to remember" (eve realizes val is dead)
     #NOTE: This part got really long and nested but making it different labels wouldve been clunky so whatever
+    scene bg cemetery with fuzzy_transition
     "I remembered it."
     "She took me there, to the doctor."
     "Because..."
@@ -1200,7 +1391,7 @@ label try_to_remember:
                     "I feel my heartbeat start to well up in my chest."
                     "It's pumping hard and I start panicking."
                     v "{glitch=5.0}{color=#bababa}{b}babyyyyyyyyyyyyy, are you okay?...{/b}{/color}{/glitch}"
-                    hide val normal 25
+                    hide val normal 25 with fuzzy_transition
                     "No, no no no no no-"
                     e "NO!"
                     "I scream at full volume."
@@ -1208,12 +1399,15 @@ label try_to_remember:
                     #TODO maybe take another transition from that video for this part
                     "I sprint back home, back to my apartment, to our apartment."
                     "The scenery speeds besides me as I stumble and run and trip all the way back home."
+                    scene bg hallway with dissolve
                     "I slam against the door and frantically reach into my pockets trying to feel for my keys."
+                    scene bg pillow with dissolve
                     "I finally find them and jam the key in the lock."
                     "I run into the apartment."
                     menu:
                         "See her.":
                             "Finally, I see her."
+                            scene bg dead val with dissolve
                             "I didn't see her before..."
                             "...but I see her now."
                             "A wave of nausea hits me. I feel it well up in my throat."
@@ -1268,13 +1462,14 @@ label try_to_remember:
                                                         "KILL YOURSELF":
                                                             jump suicide_ending
                                                         "Get help.":
+                                                            scene bg hallway with fuzzy_transition
                                                             "I finally manage to get myself under control, I stumble my way out of our apartment."
                                                             "My apartment."
                                                             "I ran into Kit shortly after."
                                                             "She took me back into her apartment, she could see how messed up I was."
                                                             "I told her about Valerie, how she died and how I'd be hiding it."
                                                             "I don't remember what I said exactly, that whole night is still a haze."
-                                                            "I'm glad i confided in her that night, I think it might've been what I needed to not do something rash."
+                                                            "I'm glad I confided in her that night, I think it might've been what I needed to not do something rash."
                                                             "I stayed over at Kit's for a couple nights."
                                                             "I wasn't ready to go back to that apartment yet."
                                                             "But one night, I finally built up the courage."
@@ -1286,7 +1481,9 @@ label try_to_remember:
                                                                     "I made sure Kit didn't come with me. She doesn't need to see Val like this."
                                                                     "She should remember her as she was."
                                                                     "I take a deep breath and walk into the apartment."
+                                                                    scene bg drugs with dissolve
                                                                     "It's just how I left it."
+                                                                    scene bg dead val with dissolve
                                                                     "She's just how I left her."
                                                                     e "H-hey baby, miss me? I'm sorry. For everything."
                                                                     "I can already feel the tears welling up and running down my face."
@@ -1302,13 +1499,16 @@ label try_to_remember:
                                                                     "I go and rummage through our apartment, I find an old bag we used to move our mattress one time."
                                                                     e "Should be big enough."
                                                                     "I carefully place her inside it."
+                                                                    scene bg bed with dissolve
                                                                     e "You look so peaceful."
                                                                     "I zip up her bag and I drag her out of the aprtment."
+                                                                    scene bg hallway with dissolve
                                                                     e "Heheh, I brought a shovel for the occasion."
                                                                     e "I hope you're proud of me, I even picked up a job to get the money for it."
-                                                                    "I'm still crying"
+                                                                    "I'm still crying."
                                                                     "Hey so, sorry if this hurts, we don't have any elevators so uhh... down the stairs we go."
                                                                     "I dragged her all the way down the stairs and onto the sidewalk."
+                                                                    scene bg cemetery with fade
                                                                     e "Y'know I bet I look hella suspicious doing this."
                                                                     e "A crazy girl with a shovel and a body bag talking to herself while she walks."
                                                                     e "I'm not talking to myself though, you're here."
@@ -1424,7 +1624,7 @@ label sesbian_lex:
     e "God, I wanna fuck."
     v "Yeah?"
     e "Yeah."
-    v "Okay, but you know the rules"
+    v "Okay, but you know the rules."
     e "yes ma'am... no touching and do what you say." 
     v "That's a good girl."
     v "Now strip and lay on the bed."
@@ -1443,14 +1643,52 @@ label sesbian_lex:
     v "Yeah, get all fucked up for me, okay?"
     e "mhmmm~~"
     "It hits me faster than I expect, I start to feel more out of it as I keep jerking off to her."
-    "Go on. Keep stroking."
+    v "Go on. Keep stroking."
+    v "You're so pathetic"
+    v "Just laying there jerking off to me."
+    v "It's adorable."
+    "I wimper and writhe under her as I touch myself."
+    "The high is making me feel funny."
+    "I start jerking faster."
+    v "Hey hey slow down."
+    e "Mmmnmnmnn I-I'm closeee."
+    v "No no, hold it in."
+    v "Quickshot."
+    v "You don't get to cum."
+    v "Not after what you've done."
+    v "You're disgusting and pathetic and you don't deserve to feel that kind of pleasure."
+    "I stop touching myself and just writhe in the discomfort of being almost there."
+    v "Isn't that right?"
+    v "Just sit in it. No release."
+    v "Good girl."
+    "As I lay there beneath her, breathinng heavily, I start to hear voices."
+    "My vision starts to get fuzzy."
+    "I close my eyes a little but the voices get louder..."
+    "and when I open them..."
+    jump mem_hallucination_1
+
     #TODO: scene not finished
 
     jump mem_hallucination_1
 
 
 label after_sex_high:
-    #TODO: Not finished
+    scene black with fuzzy_transition
+    scene bg room with fuzzy_transition
+    "The voices fade away"
+    "My vision returns to normal."
+    "I'm still pent up, on the edge."
+    "Val is sitting on the bed next to me."
+    v "Hey baby, feeling better?"
+    e "Ahh, still feeling... pent up."
+
+    menu:
+        v "Ah okay, anything you want to do to distract yourself?"
+        "Get higher to calm down":
+            ""
+        "Fuck Again":
+            ""
+        "Get some air"
 
         
 
@@ -1549,6 +1787,7 @@ label good_ending:
     jump credits
 
 label true_ending:
+    $ came_from_true_ending = True
     #"Scene - True ending."
     #"Eve confides in Kit that Valerie is dead"
     "After that I just, kept living my life."
@@ -1599,18 +1838,21 @@ screen credits():
 
     vbox:
         
-        #at credits_scroll
+        at credits_scroll
         xalign 0.5
         spacing 30
 
         text "Withdrawal Symptoms" size 60 xalign 0.5
 
-        null height 100
+        null height 1000
 
-        text "Writing\nAubrey" xalign 0.5
-        text " Art\nCeci" xalign 0.5
-        text "Programming\n      Serena" xalign 0.5
-        text "Music\nJoe" xalign 0.5
+        text "Writing\nAubrey \"Aubsickle\" Morra" xalign 0.5
+        text "3D Environments & Character Art\nSkye \"Ghost Fetus\" Peterson" xalign 0.5
+        text "Programming\nSerena \"Renabetha\" D'Avanzo" xalign 0.5
+        text "Music\nJoe \"joe_con7\" Connors" xalign 0.5
+        text "Logo & GUI Design\nAubsickle" xalign 0.5
+        text "Voice Acting\nEvelyn - Aubsickle\nValerie - Renabetha\nKit - Beatrice \"Rubea\" "xalign 0.5
+
 
         null height 50
 
@@ -1618,10 +1860,14 @@ screen credits():
 
 label credits:
 
-    scene black with fade
     show screen credits
+    if came_from_true_ending:
+        $ came_from_true_ending = True 
+        scene bg cemetary
 
-    $ renpy.pause(10.0, hard=True)
+    scene bg pills with fade
+
+    $ renpy.pause(1000.0, hard=True)
 
     hide screen credits with fade
 
