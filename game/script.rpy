@@ -24,7 +24,6 @@ image eve tear up = im.Scale("images/eve tear up.png", 500, 1100)
 image eve tired = im.Scale("images/eve tired.png", 500, 1100)
 image eve vomit = im.Scale("images/eve vomit.png", 500, 1100)
 
-
 image val normal = im.Scale("images/val normal.png", 500, 1100)
 image val normal 75 = im.Scale("images/val normal 75.png", 500, 1100)
 image val normal 25 = im.Scale("images/val normal 25.png", 500, 1100)
@@ -34,6 +33,11 @@ image val crying = im.Scale("images/val crying.png", 500, 1100)
 image val depressed = im.Scale("images/val depressed.png", 500, 1100)
 image val happy = im.Scale("images/val happy.png", 500, 1100)
 image val smug = im.Scale("images/val smug.png", 500, 1100)
+
+image kit normal = im.Scale("images/kit normal.png", 650, 930)
+image kit concerned = im.Scale("images/kit concerned.png", 650, 930)
+image kit vomit = im.Scale("images/kit vomit.png", 650, 930)
+
 
 
 
@@ -55,6 +59,8 @@ default came_from_good_ending = False
 default came_from_suicide_ending = False
 default came_from_delusion_ending = False
 default came_from_bad_touch = False
+default came_from_cemetery_1_alt = False
+default came_from_get_even_higher = False
 
 
 
@@ -67,10 +73,16 @@ define fuzzy_transition = ImageDissolve(
     ramplen=128
 )
 
+define fuzzy_transition_fast = ImageDissolve( 
+    "images/fuzzy_transition.jpg",1.0,        
+    ramplen=128
+)
+
 #used for ENTERING HALLUCINATIONS
 define spiral_transition = ImageDissolve( 
-    "images/spiral_transition.jpg",2.5,        
-    ramplen=128
+    "images/spiral_transition.jpg",2.2,        
+    ramplen=128,
+    
 )
 
 screen bedroom_inspect():
@@ -123,7 +135,7 @@ Withdrawal Symptoms features themes of:
 • Toxic relationships
 • Hallucinations
 • Death and Grieving
-• Infidelity & SA
+• Infidelity & Sexual Assault
 • Suicide
 
 If you're ok with that we hope you enjoy the game :)
@@ -137,13 +149,17 @@ If you're ok with that we hope you enjoy the game :)
 # labels act as bookmarks or chapter titles that assign a name to a specific point in your game's script
 label start:
 
-    #scene bg cemetary
+    stop music fadeout 1.0
     call screen content_warning with fade
 
     #Prologue
+    scene bg cemetery with fade
+    show eve normal at left
     "It's chilly."
     "Figures. I pick the one night where the weather decides to be a pain in the ass."
     "The fog and flickering streetlamps aren't doing this place any favors either. I can barely make out the tombstones."
+    scene bg cemetery with dissolve
+    show eve normal at left
     "I don't even know why I came out here."
     "Pretty sure no one buried here gives a rats ass about me."
     "At least the fog will hide the smoke so I don't get kicked out."
@@ -156,24 +172,31 @@ label start:
     "Weirdly enough she isn't looking down and bawling her eyes out."
     "Instead, she's looking at me."
     "Now she's walking towards me."
+    show val normal at right
     "I didn't take anything that strong today, I swear."
     "I don't need some freaky ghost shit happening right now either."
     "She stops and looks at me, her eyes are bloodshot. Probably not from the same reason mine are."
     vq "Need a light?"
     e "Aren't you supposed to be like, mourning your mom or whatever?"
+    show val annoyed at right
     vq "My girlfriend, {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}."
     vq "She would've told me to stop staring and help you out."
+    show val normal at right
     e "Well that's very kind of her, it's not often I get to smoke with a ghost."
     "She stares at me for a second, then pulls out a tiny purple lighter and-"
     vq "I don’t usually see many druggies in this cemetery, certainly none as approachable as you."
     e "Guess I'm special."
     e "You want some?"
+    show val annoyed at right
     vq "No thanks, I don't like the taste of nicotine."
     e "I wouldn't be too worried about that, got something much tastier in these."
     v "Name's Valerie by the way."
+    show val happy at right
+    show eve smirk at left
     e "Cute name, if anyone hung out with me they'd probably call me Evelyn."
     v "So Evelyn, how often do you aimlessly wander around cemeteries?"
     e "Usually whenever I'm on the hunt for grieving widows to pick up."
+    show val normal at right
     "She winces a little, yeah probably a shitty line to pull on the chick visiting her dead girlfriend."
     "Dumbass."
     v "For the record if you're trying to pick up chicks then the cemetery probably isn't your best bet."
@@ -182,22 +205,24 @@ label start:
     v "Hey so, you got a phone?"
     "I watch her reach into her pocket and pull out a crumpled up receipt for flowers."
     "She scribbles her number on it and hands it to me."
+    show val happy at right
     v "You seem cool, keep in contact."
     e "First time I've gotten a girl's number in a cemetery."
     v "You were the one trying pick up lines on grieving widows."
     e "Guess so..."
     "She practically runs away before I can respond."
+    hide val happy
+    show eve normal at left
     "Weird, I'll probably never see her again anyways so whatever."
 
 
     scene bg room with fade
-    "About two years later."
     #show screen bedroom_inspect #Put this in scenes that you can inspect
 
     #"dialogue here {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}"
 
 
-    show eve normal at left
+    show eve tired at left
     
     #show val normal at right
 
@@ -233,25 +258,30 @@ label stay_in_bed:
     # Scene - Eve doesn't answer door talks with Val in bed
     #show screen bedroom_inspect
 
-    play sound "audio/sfx_knocking.mp3" volume 1.0
+    play sound "audio/sfx_knocking.mp3" volume 0.8
+    show eve normal at left
     "Ughh,, I'm too hungover for this"
     "It'll probably stop."
-    play sound "audio/sfx_knocking.mp3" volume 1.0
+    play sound "audio/sfx_knocking.mp3" volume 0.8
     "Eventually."
     "I roll onto my side and look at Val."
     "Looks like she's still passed out. Lucky bitch."
     "I can barely hear her breathing. It's kinda cute, in a way."
+    show val smug at right
     v "*yawwwn* Good morning baby."
     v "...Who's banging?"
     e "I dunno, someone with no decency."
     v "Prolly the neighbor, doesn't she know we're trying to sleep?"
     e "I know, what kind of person bangs on someone's door so early?"
     "I glance over at our alarm clock."
+    show eve annoyed at left
     "It's 3PM."
     "I look back at Val, she's looking at me with her puppy dog eyes."
     v "Bedhead really suits you, y'know?"
+    show eve smirk at left
     e "Yeah it matches how little I take care of the rest of my body."
     "Val pouts."
+    show val annoyed at right
     v "You know that's not what I mean."
     e "Well I think your bedhead doesn't suit you." #this part may change
     e "It looks much better than the rest of you, stands out."
@@ -264,23 +294,32 @@ label stay_in_bed:
     
     menu:
         v "What do you wanna do?"
-        "Do drugs":
+        "Drugs":
             $ came_from_drugs = True
+            show eve smirk at left
+            show val smug at right
             e "Drugs. I wanna do drugs."
+            show val normal at right
             v "Already? We just woke up."
             e "I think we're both too sober and we should fix that."
             v "Yeah okay, you get them though I'm still sleepy."
-            e "Anything for you, your majesty."
+            e "Yes ma'am."
             "I crawl out of our bed and walk over to the light switch."
+            show eve normal at left
             "I flick it on."
+            show val annoyed at right
             v "Aughhhh,,, too bright,,,, shut it offfff."
             "She hides her head under the blanket."
             e "Sorry, sorry."
             "Guess I gotta rummage through our shit in the dark."
+            show bg drugs with dissolve
             "I wander over to the one table in our room and grab a random pill bottle."
             "Good enough."
             "I flop back into our bed and open the bottle, taking two pills myself and leaving the rest up to Val."
+            show bg pillow with dissolve
+            show val happy at right
             v "Thank you baby."
+            show eve high at left
             e "Shhhhh, just take your pillssss."
             "I lay there on the bed staring at the ceiling."
             "I feel Val's weight next to me as I start to feel the high."
@@ -530,7 +569,7 @@ label answer_door_alt:
     "Oh good, the banging is back."
     "Guess I'll go see what she wants now."
     "I stumble towards the door, the faint memory is still racking my brain."
-    "I reach the door and shout through the crack"
+    "I reach the door and shout through the crack."
     e "Kit we're kinda busy right now! Could you like, piss off."
     k "AWWWW but i brought over fruit!!!!!!!! ☆♡"
     k "C'MONNN EVEEE just let me innnnnn,, you'll LOVE these fruitss!!!**"
@@ -563,25 +602,35 @@ label kit_at_door:
     #Scene - Kit at the door after the player decides to do drugs
     scene black with fuzzy_transition
     scene bg room with fuzzy_transition
+    show eve high at left
     "The high is finally starting to wear off."
+    show eve annoyed at left
     play sound "audio/sfx_knocking.mp3" volume 1.0 #kit knocking
     "Oh good, the banging is back."
     "Guess I'll go see what she wants now."
     "I stumble towards the door, the faint memory is still racking my brain."
-    "I reach the door and shout through the crack"
+    "I reach the door and shout through the crack."
+    show eve angry at left
     e "Kit we're kinda busy right now! Could you like, piss off."
+    show kit normal at right
     k "AWWWW but i brought over fruit!!!!!!!! ☆♡"
     k "C'MONNN EVEEE just let me innnnnn,, you'll LOVE these fruitss!!!**"
+    show eve annoyed at left
     e "If I come out there will you shut up."
     k "Mhm mhm sure yes totally~"
     "She's not gonna shut up either way."
+    show eve normal at left
     "But I don't want her to bother Val while she comes down."
     "I open the door and walk outside, closing it behind me."
+    show bg hallway with dissolve
+    show kit concerned at right
     k "Oh WOW, your apartment looks kinda gross Eve..."
     k "How do you live like that?"
+    show kit normal at right
     k "You NEED to let me come over and deep clean your place sometime."
     e "That's not happening."
     k "OH! I almost forgot!"
+    show eve annoyed at left
     "She places a heavy basket of fruit into my hands."
     k "Grew these myself!! Hehe. ♡~"
     "She looks way too proud of herself, gross."
@@ -592,12 +641,14 @@ label kit_at_door:
     menu:
         k "Eve your eyes are so red, are you high?"
         "Yes":
+            show eve smirk at left
             k "OH! I was right!"
             e "Yeah."
             k "Cool!"
             k "My mom doesn't let me do drugs."
             e "Sucks for you I guess."
         "No":
+            show eve smirk at left
             k "Oh! Silly me, it's rude to assume."
             e "I lied, I am high."
             k "OH! Wait so I was right!"
@@ -605,25 +656,35 @@ label kit_at_door:
             "Kit pouts from my teasing."
             e "Ok I lied, I wasn't lying, I really am high."
         "Do you really care?":
+            show eve smirk at left
             k "Hmmmm, not really."
             e "Cool."
             k "Y'know my mom doesn't let me do drugs."
             e "I don't care."
     
+    show eve annoyed at left
     e "So... I'm gonna go back inside."
     k "OKAY!! Hope you enjoy the fruit!!!!!!!"
     "I slam the door on her."
+    hide kit normal
+    show bg room with dissolve
+    show val smug at right
     v "What was that about?"
     e "Fruit."
-    "That gave me such a headache, I gotta do something to relax."
-
+    show eve normal at left
     menu:
         "That gave me such a headache, I gotta do something to relax."
         "Get even higher":
-            #TODO: Not finished
-            ""
+            $ came_from_get_even_higher = True
+            "Not being sober will help this."
+            "I go grab whatever from the table and lay in bed with Val."
+            e "Hey let's get high some more."
+            "I don't even wait for her response before putting an acid tab on my tongue and waiting for it to kick in."
+            show eve high at left
+            "When it does I feel the walls close in a little and the familiar voices start to come back into earshot."
+            jump mem_hallucination_2
+
         "Listen to some music":
-            #TODO: Add music dialogue here too
             $ came_from_music_alt = True
             e "This silence is killing me, I'm gonna put on an album."
             "I start rummaging through the pile of garbage next to the CD player."
@@ -763,7 +824,63 @@ label kit_at_door:
             # listen to music 
             jump after_music_alt
 
+label get_even_higher_cont:
+    scene bg black with fuzzy_transition
+    scene bg room with fuzzy_transition
+    show eve normal at left
+    "I start to come back down."
+    "I look over at Valerie, I'm full of anger thinking about that argument."
+    e "Val."
+    show val normal at right
+    v "Hm?"
+    show eve angry at left
+    e "I'm so pissed."
+    v "What, why?"
+
+    menu:
+        "Try to patch things up":
+            jump cemetery_scene_1
+        "Confront her on the argument":
+            "Why do you always do that?"
+            v "Do what?"
+            e "You always bring her up whenever we fight."
+            e "Like she's your guardian angel, I just-"
+            e "it makes me feel so fucking pathetic."
+            e "I hate it."
+            v "Baby, this seems like it's a lot for you, I think we should just talk this out."
+            menu:
+                v "Let me take you somewhere"
+                "Hear her out":
+                    jump cemetery_scene_1_alt
+                "Fuck her til she knows I was right":
+                    ""
+                "Get so high you leave this world":
+                    e "No."
+                    v "Baby-"
+                    "I ignore her."
+                    "Fuck this."
+                    "I don't need to take this shit from her."
+                    "I'm too sober to deal with this"
+                    "I rummage around the apartment and eat a half finished edible, a mushroom and some random pill before laying down on the floor."
+                    menu:
+                        "Valerie is wrong.":
+                            "She's wrong."
+                            menu:
+                                "I know Valerie is wrong.":
+                                    "She's always wrong."
+                                    menu:
+                                        "I know more than Valerie.":
+                                            "I'm always right."
+                                            menu:
+                                                "I know what Valerie really wants.":
+                                                    "Evelyn is always right."
+                                                    menu:
+                                                        "I know Valerie":
+                                                            jump delusion_ending_drugs
+
+
             
+
 
 label offer_kit_drugs:
     scene black
@@ -871,7 +988,7 @@ label answer_phone:
             "She's blushing."
             k "E-EVE w-what about valerie?!"
             Eve "Shhhh, it's fine trust me, she's into it when I do this"
-            Kit "I-I- I dunno if I’m comfortable Eve,,"
+            Kit "I-I- I dunno if I'm comfortable Eve,,"
             Eve "Hey, heyy it's fine."
             "I run my hand along her side, I watch her react to it."
             "I lean in and kiss her."
@@ -901,7 +1018,7 @@ label kit_comes_over:
     #"Scene - kit comes over to eves apartment"
     scene black with fuzzy_transition
     e "And... yeah..."
-    k "Eve... I think she was jusst worried about you."
+    k "Eve... I think she was just worried about you."
     e "N-no she.. she just wants to make me like her stupid ex."
     k "Eve I think you're just uncomfortable with her loving both of you."
     k "It seems like you're just pushing her away."
@@ -911,13 +1028,19 @@ label kit_comes_over:
         "Bring Kit back to your apartment":
             jump val_discovery
         "I know Valerie better than her":
-            "a"
+            e "Fuck off, you both just wanna turn meinto her stupid perfect ex."
+            e "You're even worse than her, you think you know her."
+            k "Eve I-"
+            e "THAT'S NOT MY FUCKING NAME"
+            menu:
+                "I know Valerie.":
+                    jump delusion_ending_kit
 
-label rot_in_bed:
-    "rot in bed"
+
 
 label val_discovery:
     #Scene - Eve and Kit discover Val is dead
+    scene bg room
     $ came_from_val_discovery = True
     e "Fine."
     "I stand up and walk with Kit back over to our apartment."
@@ -949,16 +1072,17 @@ label val_discovery:
     hide val normal 25
     "No, no no no no no-"
     e "NO!"
+    scene bg pillow with dissolve
     "I look back over at Kit but something is different."
     "I see her now."
     "Valerie."
-    "A way of panic fills my entire body."
-    "I rush over to the table and grab a pill bottle and start downing them."
+    scene bg dead val with fuzzy_transition_fast
+    "A wave panic fills my entire body."
+    "I rush over to the table start grabbing various pill bottles and start downing them."
     "Kit tackles me to the ground before I can finish the bottle."
     k "Eve! Eve!!"
     "I writhe in her grasp until I feel the walls start to get blurry again as I start to remember."
     jump mem_hallucination_4
-    #TODO: need a boolean to jump to aftermath and come back here 7/11
 
 label aftermath:
     "As I come back down from everything I’m not in my apartment anymore."
@@ -987,21 +1111,26 @@ label mem_hallucination_1:
     #NOTE: Note to self, do this if a new scene is using the same background as the previous screen, otherwise transition graphic wont display properly
     scene black with spiral_transition
     scene bg room with spiral_transition
+    show eve normal at left
     eh "Hey, I think im gonna get high again, wanna take some with me~"
+    show val normal at right
     vh "Evelyn, you know I don't like to do anything more than, like, drinking,,"
     eh "Heyy c'mon, just a little, ok?~"
     eh "It's just a little pill it won't hurt."
+    show val annoyed at right
     vh "Are you sure? I just, I don't want to get sucked into doing this kinda stuff."
     eh "What, like me?"
     "I giggled, playing it off in a joking tone but it did kinda hurt to hear her say that."
     "Painting me like I was pressuring her."
+    show eve smirk at left
     eh "I'll take one with you if that makes you feel better."
     "She glanced away, clearly reluctant."
-    vh "Alright fine, but only if you we do it together." #edited because repetitive originally
+    vh "Alright fine, but only if you we do it together."
     "But she agreed anyway."
     eh "Ready?"
     "She nodded her head."
     "We both downed the pill, she made sure to wash hers down with water."
+    show val normal at right
     vh "I guess that wasn't so bad."
     eh "See? What did I tell you?"
 
@@ -1065,6 +1194,10 @@ label mem_hallucination_2:
     if came_from_offer_kit_drugs:
         $ came_from_offer_kit_drugs = True 
         jump answer_phone
+
+    if came_from_get_even_higher:
+        $ came_from_get_even_higher = True 
+        jump get_even_higher_cont
     
     return
 
@@ -1131,6 +1264,10 @@ label mem_hallucination_3:
         $ came_from_cant_feel_anymore = True
         jump after_hallucination_panic
     
+    if came_from_cemetery_1:
+        $ came_from_cemetery_1 = True
+        jump try_to_remember
+
     if came_from_cemetery_1:
         $ came_from_cemetery_1 = True
         jump try_to_remember
@@ -1264,8 +1401,45 @@ label after_music_alt:
         v "Baby I'm worried, are you feeling alright?"
         "Try to patch things up":
             jump cemetery_scene_1
+            
         "Confront her on the argument":
-            "yeah"
+            "Why do you always do that?"
+            v "Do what?"
+            e "You always bring her up whenever we fight."
+            e "Like she's your guardian angel, I just-"
+            e "it makes me feel so fucking pathetic."
+            e "I hate it."
+            v "Baby, this seems like it's a lot for you, I think we should just talk this out."
+            menu:
+                v "Let me take you somewhere"
+                "Hear her out":
+                    jump cemetery_scene_1_alt
+                "Fuck her til she knows I was right":
+                    ""
+                "Get so high you leave this world":
+                    e "No."
+                    v "Baby-"
+                    "I ignore her."
+                    "Fuck this."
+                    "I don't need to take this shit from her."
+                    "I'm too sober to deal with this"
+                    "I rummage around the apartment and eat a half finished edible, a mushroom and some random pill before laying down on the floor."
+                    menu:
+                        "Valerie is wrong.":
+                            "She's wrong."
+                            menu:
+                                "I know Valerie is wrong.":
+                                    "She's always wrong."
+                                    menu:
+                                        "I know more than Valerie.":
+                                            "I'm always right."
+                                            menu:
+                                                "I know what Valerie really wants.":
+                                                    "Evelyn is always right."
+                                                    menu:
+                                                        "I know Valerie":
+                                                            jump delusion_ending_drugs
+            
 
 
 
@@ -1277,18 +1451,76 @@ label after_hallucination_panic:
 label cemetery_scene_1:
     # "Scene - Eve and Hallucination Valerie make up and go to the cemetery" (try to patch things up)
     # TODO: Make this cemetery BG
-    scene bg cemetary
     $ came_from_cemetery_1 = True
-    e "Aigh, I'm sorry, I just, I keep remembering shit."
+    scene bg room
+    show eve normal at left
+    show val normal at right
+    e "Agh, I'm sorry, I just, I keep remembering shit."
     e "Stupid fucking arguments we've had."
     e "I just- I hate when I get like that. I just, I hate it so much when you talk about her."
     e "I get so angry when you talk about her."
     e "Even if she's the entire reason we met."
     e "I hate it so fucking much."
+    show val depressed at right
     v "Maybe, we could visit her."
+    show eve annoyed at left
     e "What? Why?"
     v "It might be good for the both of us, don't you think?"
     e "I- I guess."
+    e "Sure."
+    "I take one more look at Val and walk towards the door."
+    show val normal at right
+    show bg outside cem day with fade
+    "I have fond memories of the cemetery, even if {i}she{/i} is buried there"
+    "I walk with Val to the cemetery, it's always weird walking around in the daylight."
+    "We always get shifty looks from everyone."
+    "I guess probably because I look like shit."
+    "Or maybe they just hate to see two girls together."
+    show bg cemetery with dissolve
+    "We get to the cemetery quick enough, Val takes us over to her grave."
+    show val smug at right
+    show eve normal at left
+    v "Hey, {glitch=5.0}{color=#bababa}{b}████{/b}{/color}{/glitch}."
+    e "God I hate that name so much."
+    v "I'm back, I brought Evelyn this time."
+    v "I know you two never met, but she's helping me heal."
+    show val depressed at right
+    v "She was there for me when you..."
+    show val crying at right
+    "Valerie is crying. I want to comfort her but, I'm so uncomfortably angry that I can't."
+    "I just stand there, looking down at her."
+    "Crying."
+    "But she stands back up."
+    show val normal at right
+    v "Sorry *sniffle* about that."
+    "And she wipes her tears off her face."
+    v "Let's uh, go stand under the tree, okay?"
+    "We go and walk over to the lone tree among the graves, we sit down underneath it."
+    v "Do you know why we came here?"
+    e "So you could talk about your dead ex-girlfriend?"
+    v "No, so that I could talk to you."
+    v "Sweetie, I care a lot about you and, I know it hurts sometimes and..."
+    "She's going off on a rant again but.."
+    "this time I don't feel as pushed away by it."
+    v "I just, really want you to get better, I care about you and…"
+    v "I don't want you to destroy your life or worse."
+    v "I- I don't want you to overdose."
+    v "I don't want to lose you, too."
+    v "Can you please try to remember..."
+    "Fine, just this once. For her."
+    "I lay back against the tree, I feel the wind on my face and I try to focus and remember, remember why she's so worried."
+    jump mem_hallucination_3
+
+label cemetery_scene_1_alt:
+    #Hear her out and go to the cemetery
+    #TODO background and sprites
+    $ came_from_cemetery_1_alt = True
+    e "Yeah, okay... where?"
+    v "We're going to visit her."
+    e "What? Why?"
+    v "It might be good for the both of us."
+    v "Don't you think?"
+    e "I-I guess."
     e "Sure."
     "I take one more look at Val and walk towards the door."
     "I have fond memories of the cemetery, even if {i}she{/i} is buried there"
@@ -1324,7 +1556,6 @@ label cemetery_scene_1:
     "Fine, just this once. For her."
     "I lay back against the tree, I feel the wind on my face and I try to focus and remember, remember why she's so worried."
     jump mem_hallucination_3
-    #TODO: Come back here
 
 label cemetery_scene_2:
     #Eve arrives at the cemetery with Val's body
@@ -1396,7 +1627,7 @@ label try_to_remember:
                     e "NO!"
                     "I scream at full volume."
                     "Everyone's staring at me. They're all staring."
-                    #TODO maybe take another transition from that video for this part
+                    show bg outside cem day with dissolve
                     "I sprint back home, back to my apartment, to our apartment."
                     "The scenery speeds besides me as I stumble and run and trip all the way back home."
                     scene bg hallway with dissolve
@@ -1407,7 +1638,7 @@ label try_to_remember:
                     menu:
                         "See her.":
                             "Finally, I see her."
-                            scene bg dead val with dissolve
+                            scene bg dead val with fuzzy_transition
                             "I didn't see her before..."
                             "...but I see her now."
                             "A wave of nausea hits me. I feel it well up in my throat."
@@ -1667,9 +1898,7 @@ label sesbian_lex:
     "and when I open them..."
     jump mem_hallucination_1
 
-    #TODO: scene not finished
-
-    jump mem_hallucination_1
+    
 
 
 label after_sex_high:
@@ -1685,12 +1914,63 @@ label after_sex_high:
     menu:
         v "Ah okay, anything you want to do to distract yourself?"
         "Get higher to calm down":
-            ""
+            "I start to come back down, I don't think that helped."
+            "I feel even more emotional than before."
+            "I look over at Valerie"
+            menu:
+                "I'm still pissed about that night."
+                "Confront her on the argument":
+                    "Why do you always do that?"
+                    v "Do what?"
+                    e "You always bring her up whenever we fight."
+                    e "Like she's your guardian angel, I just-"
+                    e "it makes me feel so fucking pathetic."
+                    e "I hate it."
+                    v "Baby, this seems like it's a lot for you, I think we should just talk this out."
+                    
+                    menu:
+                        v "Let me take you somewhere."
+                        "Hear her out":
+                            jump cemetery_scene_1_alt
+                        "Fuck her til she knows I was right":
+                            "" #TODO not finished
+                        "Get so high you leave this world":
+                            e "No."
+                            v "Baby-"
+                            "I ignore her."
+                            "Fuck this."
+                            "I don't need to take this shit from her."
+                            "I'm too sober to deal with this"
+                            "I rummage around the apartment and eat a half finished edible, a mushroom and some random pill before laying down on the floor."
+                            menu:
+                                "Valerie is wrong.":
+                                    "She's wrong."
+                                    menu:
+                                        "I know Valerie is wrong.":
+                                            "She's always wrong."
+                                            menu:
+                                                "I know more than Valerie.":
+                                                    "I'm always right."
+                                                    menu:
+                                                        "I know what Valerie really wants.":
+                                                            "Evelyn is always right."
+                                                            menu:
+                                                                "I know Valerie":
+                                                                    jump delusion_ending_drugs
+
+
+
+                
+
+                    
+        #TODO: not finished
         "Fuck Again":
             ""
-        "Get some air"
+        "Get some air":
+            ""
 
         
+
 
 
 label suicide_ending:
@@ -1769,7 +2049,10 @@ label delusion_ending_kit:
     jump credits
 
 label delusion_ending_drugs:
-    ""
+    menu:
+        "I am"
+        "Valerie":
+            jump credits
 
     $ achievement.grant("delusion_ending")
     $ renpy.notify("Achievement Unlocked: As if nothing happened")
@@ -1863,7 +2146,7 @@ label credits:
     show screen credits
     if came_from_true_ending:
         $ came_from_true_ending = True 
-        scene bg cemetary
+        scene bg cemetery
 
     scene bg pills with fade
 
